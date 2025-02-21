@@ -28,7 +28,7 @@ class DouyinParser(PluginBase):
         self.url_pattern = re.compile(r'https?://v\.douyin\.com/\w+/?')
 
         # 读取代理配置
-        config_path = os.path.join(os.path.dirname(__file__), "douyin_parser.toml")
+        config_path = os.path.join(os.path.dirname(__file__), "config.toml")
         try:
             with open(config_path, "rb") as f:
                 config = tomllib.load(f)
@@ -42,6 +42,8 @@ class DouyinParser(PluginBase):
             logger.error(f"加载抖音解析器配置文件失败: {str(e)}")
             self.enable = True
             self.http_proxy = None
+
+        logger.debug("[抖音] 插件初始化完成，代理设置: {}", self.http_proxy)
 
     def _clean_response_data(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """清理响应数据"""
@@ -289,3 +291,9 @@ class DouyinParser(PluginBase):
                 await bot.send_text_message(wxid=chat_id, content=f"视频解析失败: {error_msg}\n", at=[sender])
             else:
                 await bot.send_text_message(wxid=chat_id, content=f"视频解析失败: {error_msg}")
+
+    async def async_init(self):
+        """异步初始化函数"""
+        # 可以在这里进行一些异步的初始化操作
+        # 比如测试API可用性等
+        pass

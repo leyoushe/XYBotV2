@@ -17,7 +17,7 @@ msgDB-url = "sqlite+aiosqlite:///database/message.db"
 keyvalDB-url = "sqlite+aiosqlite:///database/keyval.db"
 
 # 管理员设置
-admins = ["admin-wxid", "admin-wxid"]  # 管理员的wxid列表，可从消息日志中获取
+admins = ["wxid_ki8p3ydkqtq521", "wxid: wxid_65mctcng57fg22"]  # 管理员的wxid列表，可从消息日志中获取
 disabled-plugins = ["ExamplePlugin", "TencentLke"]   # 禁用的插件列表，不需要的插件名称填在这里
 timezone = "Asia/Shanghai"             # 时区设置，中国用户使用 Asia/Shanghai
 
