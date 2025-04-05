@@ -204,13 +204,19 @@ async def bot_core():
     logger.success("处理堆积消息完毕")
 
     logger.success("开始处理消息")
+    fail_count = 0  # 添加失败计数器
     while True:
         now = time.time()
 
         try:
             data = await bot.sync_message()
+            fail_count = 0  # 成功获取后重置计数器
         except Exception as e:
+            fail_count += 1
             logger.warning("获取新消息失败 {}", e)
+            if fail_count >= 3:
+                logger.error("连续三次获取消息失败，退出程序")
+                break
             await asyncio.sleep(5)
             continue
 
